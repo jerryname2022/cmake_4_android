@@ -1,0 +1,13 @@
+#for make toolchain
+#use make-standalone-toolchain.sh script 
+sh $ANDROID_NDK/build/tools/make-standalone-toolchain.sh --platform=android-9 --install-dir=./android-toolchain   --toolchain=arm-linux-androideabi-4.9
+
+export PATH=$PATH:./android-toolchain/bin
+export ANDROID_STANDALONE_TOOLCHAIN=./android-toolchain
+
+#download android.toolchain.cmake file
+
+#build
+cmake -DCMAKE_TOOLCHAIN_FILE=android.toolchain.cmake -DANDROID_ABI="armeabi"  ..
+
+make
